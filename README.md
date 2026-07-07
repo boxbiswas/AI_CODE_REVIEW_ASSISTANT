@@ -228,26 +228,21 @@ For a fully pannable, zoomable visual ER diagram, paste the contents of [`docs/s
 **Backend** — 12 direct dependencies across 5 categories:
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'pie1': '#00E599', 'pie2': '#316192', 'pie3': '#FF6B35', 'pie4': '#339933', 'pie5': '#764ABC', 'pieStrokeColor': '#20232A', 'pieStrokeWidth': '2px', 'textPosition': '0.5', 'pieTitleTextSize': '20px' }}}%%
-pie title "Backend: Packages per Category"
-    "HTTP & Server" : 5
-    "Database" : 3
-    "Auth" : 2
-    "AI & ML" : 1
-    "Config" : 1
+xychart-beta
+    title "Backend: packages per category"
+    x-axis ["AI & ML", "Database", "Auth", "HTTP & Server", "Config"]
+    y-axis "Packages" 0 --> 6
+    bar [1, 3, 2, 5, 1]
 ```
 
 **Frontend** — 15 direct dependencies across 6 categories:
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'pie1': '#61DAFB', 'pie2': '#764ABC', 'pie3': '#06B6D4', 'pie4': '#FF6384', 'pie5': '#00E599', 'pie6': '#FF6B35', 'pieStrokeColor': '#20232A', 'pieStrokeWidth': '2px', 'textPosition': '0.5', 'pieTitleTextSize': '20px' }}}%%
-pie title "Frontend: Packages per Category"
-    "UI & Styling" : 3
-    "State & Data" : 3
-    "React Core" : 3
-    "Editor & Charts" : 2
-    "Routing & Forms" : 2
-    "Fonts & Notifications" : 2
+xychart-beta
+    title "Frontend: packages per category"
+    x-axis ["UI & Styling", "State & Data", "React Core", "Editor & Charts", "Routing & Forms", "Fonts & Notif"]
+    y-axis "Packages" 0 --> 4
+    bar [3, 3, 3, 2, 2, 2]
 ```
 
 ---
