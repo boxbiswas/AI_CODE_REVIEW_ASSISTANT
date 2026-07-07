@@ -353,7 +353,7 @@ Distributed under the **MIT License**. See [`LICENSE`](./LICENSE) for more infor
 
 <div align="center">
 
-Made with 💖 and a lot of ☕ by [Indranil Biswas](https://github.com/boxbiswas)
+Made with 💖 and a lot of ☕ by [Indrasish Biswas](https://github.com/boxbiswas)
 
 ⭐ **If you found LUMUS useful, please give it a star!** ⭐
 
