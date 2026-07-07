@@ -34,8 +34,8 @@ export const registerUser = (req, res) => {
                 let token = jwt.sign({ id: createUser.id, email: createUser.email }, process.env.JWT_SECRET, { expiresIn: '1d' });
                 res.cookie('token', token, {
                     httpOnly: true,
-                    secure: false,        // Required for production (HTTPS)
-                    sameSite: 'none',    // REQUIRED for cross-site cookies
+                    secure: true,        // Required for production (HTTPS)
+                    sameSite: 'lax',    // REQUIRED for cross-site cookies
                     maxAge: 24 * 60 * 60 * 1000 // 1 day
                 });
                 res.send({ message: 'User registered successfully', token });
@@ -68,8 +68,8 @@ export const loginUser = async (req, res) => {
                 let token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1d' });
                 res.cookie('token', token, {
                     httpOnly: true,
-                    secure: false,        // Required for production (HTTPS)
-                    sameSite: 'none',    // REQUIRED for cross-site cookies
+                    secure: true,        // Required for production (HTTPS)
+                    sameSite: 'lax',    // REQUIRED for cross-site cookies
                     maxAge: 24 * 60 * 60 * 1000 // 1 day
                 });
                 res.send({ message: 'Login successful', token, user: { id: user.id, name: user.name, email: user.email } });

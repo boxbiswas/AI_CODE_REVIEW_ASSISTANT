@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@theme {
+  /* Font Override */
+  --font-sans: 'Inter', sans-serif;
+
+  /* Sakura Color Palette */
+  --color-sakura-pink: #F9A8D4;
+  --color-sakura-strong: #EC4899;
+  --color-sakura-blush: #FBCFE8;
+  --color-sakura-muted: #D6A9A9;
+
+  /* Custom Animations */
+  --animate-float: float 4s ease-in-out infinite;
+  --animate-glow-pulse: glowPulse 3s ease-in-out infinite;
+  --animate-fade-in-up: fadeInUp 0.5s ease-out forwards;
+  --animate-shimmer: shimmer 2s linear infinite;
+  --animate-petal-drift: petalDrift 5s ease-in-out infinite;
+}
+
+/* Custom Keyframes */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(244, 114, 182, 0.15); }
+  50% { box-shadow: 0 0 40px rgba(244, 114, 182, 0.30); }
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes petalDrift {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+  50% { transform: translateY(-4px) rotate(6deg); opacity: 0.9; }
+}
+
+/* Base Global Styles & Scrollbar */
+@layer base {
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-black;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-sakura-pink/40 rounded-full transition-colors;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-sakura-pink/70;
+  }
+}

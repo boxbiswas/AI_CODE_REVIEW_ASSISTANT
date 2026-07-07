@@ -24,15 +24,15 @@ const app = express();
 
 
 // Cors configuration
-// app.use(cors({
-//     origin: [
-//         "http://localhost:5173",
-//         ""
-//     ],
-//     credentials: true, // This allows the cookies to be sent back and forth
-//     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-//     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Cookie']
-// }))
+app.use(cors({
+    origin: [
+        "http://localhost:5173"
+        
+    ],
+    credentials: true, // This allows the cookies to be sent back and forth
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Cookie']
+}))
 
 
 
