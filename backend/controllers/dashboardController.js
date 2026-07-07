@@ -10,6 +10,8 @@ export const getDashboardData = async (req, res) => {
             totalReviews, 
             statusCounts, 
             scoreAggregation, 
+            totalFilesReviewed,
+            totalFindings,
             recentReviews
         ] = await prisma.$transaction([
             
@@ -35,7 +37,17 @@ export const getDashboardData = async (req, res) => {
                 _avg: { overallScore: true }
             }),
             
-            // 4. Fetch the 5 most recent reviews
+            // 4. Calculate Total Files Reviewed
+            prisma.codeFile.count({
+                where: { review: { userId } }
+            }),
+            
+            // 5. Calculate Total Findings
+            prisma.finding.count({
+                where: { review: { userId } }
+            }),
+
+            // 6. Fetch the 5 most recent reviews
             prisma.review.findMany({
                 where: { userId },
                 orderBy: { createdAt: 'desc' },
@@ -47,7 +59,10 @@ export const getDashboardData = async (req, res) => {
                     language: true,
                     status: true,
                     overallScore: true,
-                    createdAt: true
+                    createdAt: true,
+                    _count: {
+                        select: { codeFiles: true, findings: true }
+                    }
                 }
             })
         ]);
@@ -64,6 +79,8 @@ export const getDashboardData = async (req, res) => {
         res.status(200).json({
             stats: {
                 totalReviews,
+                filesReviewed: totalFilesReviewed,
+                totalFindings,
                 averageScore: scoreAggregation._avg.overallScore ? Math.round(scoreAggregation._avg.overallScore) : 0,
                 statusBreakdown: formattedStatusCounts
             },

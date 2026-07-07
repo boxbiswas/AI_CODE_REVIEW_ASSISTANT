@@ -14,17 +14,21 @@ export const getReviewHistory = async (req, res) => {
         const skip = (page - 1) * limit;
 
         // 2. Filter & Search Parameters
-        const { status, search } = req.query;
+        const { status, search, language, submissionType } = req.query;
         
         const whereClause = {
             userId: userId,
             // Dynamically add status filter if provided
-            ...(status && { status: status.toUpperCase() }),
+            ...(status && status !== 'All' && { status: status.toUpperCase() }),
+            // Dynamically add language filter if provided
+            ...(language && language !== 'All' && { language: language.toLowerCase() }),
+            // Dynamically add submissionType filter if provided
+            ...(submissionType && submissionType !== 'All' && { submissionType: submissionType.toUpperCase() }),
             // Dynamically add search filter for Review ID or related File Names
             ...(search && {
                 OR: [
-                    { id: { contains: search, mode: 'insensitive' } },
-                    { codeFiles: { some: { fileName: { contains: search, mode: 'insensitive' } } } }
+                    { title: { contains: search, mode: 'insensitive' } },
+                    { language: { contains: search, mode: 'insensitive' } }
                 ]
             })
         };

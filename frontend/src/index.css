@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   /* Font Override */
   --font-sans: 'Inter', sans-serif;
@@ -25,8 +27,15 @@
 }
 
 @keyframes glowPulse {
-  0%, 100% { box-shadow: 0 0 20px rgba(244, 114, 182, 0.15); }
-  50% { box-shadow: 0 0 40px rgba(244, 114, 182, 0.30); }
+  0%, 100% { box-shadow: 0 2px 12px rgba(236, 72, 153, 0.10); }
+  50% { box-shadow: 0 4px 20px rgba(236, 72, 153, 0.20); }
+}
+
+:where(.dark, .dark *) {
+  @keyframes glowPulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(244, 114, 182, 0.15); }
+    50% { box-shadow: 0 0 40px rgba(244, 114, 182, 0.30); }
+  }
 }
 
 @keyframes fadeInUp {
@@ -51,12 +60,23 @@
     height: 6px;
   }
   ::-webkit-scrollbar-track {
-    @apply bg-black;
+    background: #f5f5f5;
+  }
+  :where(.dark, .dark *) ::-webkit-scrollbar-track {
+    background: #000;
   }
   ::-webkit-scrollbar-thumb {
-    @apply bg-sakura-pink/40 rounded-full transition-colors;
+    background: #f9a8d4;
+    border-radius: 9999px;
+    transition: background-color 0.2s;
   }
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-sakura-pink/70;
+    background: #ec4899;
+  }
+  :where(.dark, .dark *) ::-webkit-scrollbar-thumb {
+    background: rgba(249, 168, 212, 0.4);
+  }
+  :where(.dark, .dark *) ::-webkit-scrollbar-thumb:hover {
+    background: rgba(249, 168, 212, 0.7);
   }
 }

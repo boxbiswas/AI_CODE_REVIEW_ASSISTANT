@@ -1,21 +1,41 @@
 import { prisma } from "../lib/prisma.js";
-
+import { runFullPipeline } from "../services/pipelineService.js";
 
 // Helper to map file extensions to language names automatically
 const detectLanguage = (extension) => {
     const extMap = {
         '.js': 'javascript',
+        '.jsx': 'javascript',
         '.ts': 'typescript',
+        '.tsx': 'typescript',
         '.py': 'python',
         '.java': 'java',
         '.cpp': 'cpp',
         '.c': 'c',
         '.cs': 'csharp',
+        '.go': 'go',
+        '.rs': 'rust',
+        '.php': 'php',
         '.html': 'html',
         '.css': 'css',
         '.json': 'json'
     };
     return extMap[extension?.toLowerCase()] || 'plaintext';
+};
+
+const getExtensionForLanguage = (language) => {
+    const langMap = {
+        'javascript': '.js',
+        'typescript': '.ts',
+        'python': '.py',
+        'java': '.java',
+        'cpp': '.cpp',
+        'csharp': '.cs',
+        'go': '.go',
+        'rust': '.rs',
+        'php': '.php'
+    };
+    return langMap[language?.toLowerCase()] || '.txt';
 };
 
 
@@ -44,10 +64,12 @@ export const submitCode = async (req, res) => {
                 return res.status(400).json({ message: "Language selection is required when pasting code." });
             }
 
+            const ext = getExtensionForLanguage(language);
+
             codeFilesData.push({
-                fileName: 'pasted_snippet.txt',
-                extension: '.txt',
-                language: language || 'plaintext',
+                fileName: `pasted_snippet${ext}`,
+                extension: ext,
+                language: language,
                 content: pastedCode,
                 size: Buffer.byteLength(pastedCode, 'utf8') // Calculate byte size
             });
@@ -65,7 +87,10 @@ export const submitCode = async (req, res) => {
             // Loop through uploaded files and extract their contents
             req.files.forEach(file => {
                 const content = file.buffer.toString('utf8'); // Convert memory buffer to text string
-                const extension = file.originalname.substring(file.originalname.lastIndexOf('.'));
+                const lastDotIndex = file.originalname.lastIndexOf('.');
+                const extension = lastDotIndex !== -1 && lastDotIndex !== 0 
+                    ? file.originalname.substring(lastDotIndex).toLowerCase() 
+                    : '';
 
                 codeFilesData.push({
                     fileName: file.originalname,
@@ -99,6 +124,10 @@ export const submitCode = async (req, res) => {
                 codeFiles: true // Return the newly created files in the response
             }
         });
+
+        // Trigger the backend pipeline asynchronously
+        // Do NOT await this so the response returns immediately
+        runFullPipeline(newReview.id).catch(err => console.error("Pipeline kick-off failed:", err));
 
         res.status(201).json({
             message: "Code submitted successfully and saved to database.",
