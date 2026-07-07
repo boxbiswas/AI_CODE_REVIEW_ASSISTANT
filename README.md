@@ -225,21 +225,23 @@ For a fully pannable, zoomable visual ER diagram, paste the contents of [`docs/s
 
 ### Dependency Breakdown
 
+**Backend** — 12 direct dependencies across 5 categories:
+
 ```mermaid
-%%{init: {'theme': 'dark', 'themeVariables': {'xyChart': {'backgroundColor': '#0d1117', 'plotColorPalette': '#f9a8d4,#f472b6,#e879f9,#a855f7,#6366f1'}}}}%%
 xychart-beta
-    title "Backend Dependencies (by category)"
+    title "Backend: packages per category"
     x-axis ["AI & ML", "Database", "Auth", "HTTP & Server", "Config"]
-    y-axis "Package count" 0 --> 6
+    y-axis "Packages" 0 --> 6
     bar [1, 3, 2, 5, 1]
 ```
 
+**Frontend** — 15 direct dependencies across 6 categories:
+
 ```mermaid
-%%{init: {'theme': 'dark', 'themeVariables': {'xyChart': {'backgroundColor': '#0d1117', 'plotColorPalette': '#61DAFB,#38bdf8,#34d399,#a3e635,#fb923c,#c084fc'}}}}%%
 xychart-beta
-    title "Frontend Dependencies (by category)"
+    title "Frontend: packages per category"
     x-axis ["UI & Styling", "State & Data", "React Core", "Editor & Charts", "Routing & Forms", "Fonts & Notif"]
-    y-axis "Package count" 0 --> 4
+    y-axis "Packages" 0 --> 4
     bar [3, 3, 3, 2, 2, 2]
 ```
 
@@ -249,19 +251,19 @@ xychart-beta
 
 | Layer | Technology |
 |---|---|
-| **Frontend** | React 19 + Vite 8 |
-| **Styling** | TailwindCSS v4 + custom sakura design tokens |
-| **State** | Redux Toolkit + React Context |
-| **Code Editor** | `@monaco-editor/react` |
-| **Charts** | Recharts 3 |
-| **Backend** | Node.js 22 + Express 5 (ESM) |
-| **AI Engine** | Google Gemini (`@google/genai`) |
-| **ORM** | Prisma 7 + `@prisma/adapter-pg` |
-| **Database** | Neon PostgreSQL (serverless) |
-| **Auth** | JWT + bcrypt + httpOnly cookies |
-| **File Uploads** | Multer (memory storage) |
-| **Frontend Deploy** | Vercel |
-| **Backend Deploy** | Railway |
+| **Frontend** | ![React](https://img.shields.io/badge/React_19-20232A?style=flat-square&logo=react&logoColor=61DAFB) ![Vite](https://img.shields.io/badge/Vite_8-646CFF?style=flat-square&logo=vite&logoColor=white) |
+| **Styling** | ![TailwindCSS](https://img.shields.io/badge/TailwindCSS_v4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white) + sakura design tokens |
+| **State** | ![Redux](https://img.shields.io/badge/Redux_Toolkit-764ABC?style=flat-square&logo=redux&logoColor=white) ![React Context](https://img.shields.io/badge/React_Context-20232A?style=flat-square&logo=react&logoColor=61DAFB) |
+| **Code Editor** | ![Monaco](https://img.shields.io/badge/Monaco_Editor-007ACC?style=flat-square&logo=visualstudiocode&logoColor=white) |
+| **Charts** | ![Recharts](https://img.shields.io/badge/Recharts_3-FF6384?style=flat-square&logo=chartdotjs&logoColor=white) |
+| **Backend** | ![Node.js](https://img.shields.io/badge/Node.js_22-339933?style=flat-square&logo=nodedotjs&logoColor=white) ![Express](https://img.shields.io/badge/Express_5-000000?style=flat-square&logo=express&logoColor=white) |
+| **AI Engine** | ![Gemini](https://img.shields.io/badge/Google_Gemini-4285F4?style=flat-square&logo=google&logoColor=white) `gemini-2.0-flash-lite` |
+| **ORM** | ![Prisma](https://img.shields.io/badge/Prisma_7-2D3748?style=flat-square&logo=prisma&logoColor=white) |
+| **Database** | ![Neon](https://img.shields.io/badge/Neon_PostgreSQL-00E599?style=flat-square&logo=postgresql&logoColor=white) (serverless) |
+| **Auth** | ![JWT](https://img.shields.io/badge/JWT-000000?style=flat-square&logo=jsonwebtokens&logoColor=white) ![bcrypt](https://img.shields.io/badge/bcrypt-EF4444?style=flat-square&logoColor=white) + httpOnly cookies |
+| **File Uploads** | ![Multer](https://img.shields.io/badge/Multer-FF6B35?style=flat-square&logo=nodedotjs&logoColor=white) (memory storage) |
+| **Frontend Deploy** | ![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white) |
+| **Backend Deploy** | ![Railway](https://img.shields.io/badge/Railway-0B0D0E?style=flat-square&logo=railway&logoColor=white) |
 
 ---
 
