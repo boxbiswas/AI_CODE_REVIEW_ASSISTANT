@@ -1,28 +1,21 @@
 <div align="center">
 
-<!-- TODO: Replace with your actual logo asset -->
-<img src="./assets/logo.png" alt="LUMUS Logo" width="120" height="120" />
-
 # ✦ LUMUS
 
 ### *Elevate your code quality with AI-powered reviews*
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-lumus--demo.vercel.app-ec4899?style=for-the-badge&logo=vercel&logoColor=white)](https://lumus-demo.vercel.app)
-[![Build Status](https://img.shields.io/badge/Build-Passing-22c55e?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/boxbiswas/AI_CODE_REVIEW_ASSISTANT/actions)
-[![License: MIT](https://img.shields.io/badge/License-MIT-f9a8d4?style=for-the-badge)](./LICENSE)
-[![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev)
-[![Node.js](https://img.shields.io/badge/Node.js-22-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org)
-[![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-f472b6?style=for-the-badge)](https://github.com/boxbiswas/AI_CODE_REVIEW_ASSISTANT/pulls)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![Neon](https://img.shields.io/badge/Neon_DB-00E599?style=for-the-badge&logo=postgresql&logoColor=white)
+![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white)
+![License](https://img.shields.io/badge/License-ISC-f9a8d4?style=for-the-badge)
+![Last Commit](https://img.shields.io/github/last-commit/boxbiswas/AI_CODE_REVIEW_ASSISTANT?style=for-the-badge)
 
 <br/>
 
-[🚀 **Live Demo**](https://lumus-demo.vercel.app) <!-- TODO: replace with actual deployment URL -->
-&nbsp;&nbsp;·&nbsp;&nbsp;
-[🎬 **Watch Demo Video**](#) <!-- TODO: add YouTube/Loom link -->
-&nbsp;&nbsp;·&nbsp;&nbsp;
-[🐛 **Report a Bug**](https://github.com/boxbiswas/AI_CODE_REVIEW_ASSISTANT/issues)
-&nbsp;&nbsp;·&nbsp;&nbsp;
-[✨ **Request a Feature**](https://github.com/boxbiswas/AI_CODE_REVIEW_ASSISTANT/issues)
+[🚀 **Live App**](https://ai-review-frontend-lovat.vercel.app) &nbsp;·&nbsp; [🐛 **Report a Bug**](https://github.com/boxbiswas/AI_CODE_REVIEW_ASSISTANT/issues) &nbsp;·&nbsp; [✨ **Request a Feature**](https://github.com/boxbiswas/AI_CODE_REVIEW_ASSISTANT/issues)
 
 </div>
 
@@ -31,14 +24,14 @@
 ## 📋 Table of Contents
 
 - [Overview](#-overview)
-- [Key Features](#-key-features)
+- [Features](#-features)
+- [Architecture](#️-architecture)
+- [Database Schema](#️-database-schema)
 - [Tech Stack](#️-tech-stack)
-- [Live Demo & Screenshots](#-live-demo--screenshots)
-- [UI Highlights & Interactions](#-ui-highlights--interactions)
-- [Getting Started](#-getting-started)
+- [Quick Start](#-quick-start)
 - [Project Structure](#-project-structure)
-- [Usage](#-usage)
-- [Roadmap](#️-roadmap)
+- [API Reference](#-api-reference)
+- [Deployment](#-deployment)
 - [Contributing](#-contributing)
 - [License](#-license)
 - [Contact](#-contact)
@@ -47,32 +40,209 @@
 
 ## 🔍 Overview
 
-**LUMUS** is a full-stack, AI-powered code review dashboard designed to give developers instant, deep-dive analysis of their code quality. Submit any snippet or file and receive a comprehensive review powered by Google Gemini AI — including an overall quality score, static analysis findings, complexity metrics, bug detection, and actionable improvement suggestions.
+**LUMUS** is a full-stack, AI-powered code review platform. Submit any code snippet or upload source files and receive a comprehensive, multi-stage analysis in seconds — powered by **Google Gemini AI**. LUMUS returns an overall quality score (0–100), static analysis findings categorized by severity, cyclomatic complexity metrics, and a full AI-generated narrative review with actionable improvement suggestions.
 
-More than just a linter, LUMUS understands the **intent** behind your code. It identifies architectural anti-patterns, security vulnerabilities, performance bottlenecks, and style inconsistencies across multiple languages including TypeScript, JavaScript, Python, Java, Go, Rust, and more — all within seconds.
-
-LUMUS features a production-grade, responsive dashboard with a polished glassmorphism UI, a real-time score gauge, full review history, filtering, and a beautifully implemented light/dark mode system. Whether you're a solo developer wanting a second opinion or a team lead reviewing contributions, LUMUS makes code quality visible, measurable, and actionable.
-
-<!-- TODO: Replace with your actual dashboard screenshot/GIF -->
-<div align="center">
-  <img src="./assets/dashboard-preview.png" alt="LUMUS Dashboard Preview" width="90%" style="border-radius: 16px;" />
-</div>
+The backend is a **Node.js + Express 5** REST API with a 4-stage asynchronous analysis pipeline. The frontend is a **React 19 + Vite** SPA with a glassmorphism design system, Monaco code editor, and full light/dark mode. The database is hosted on **Neon (serverless PostgreSQL)**, managed via **Prisma ORM**, requiring zero local Postgres setup.
 
 ---
 
-## ✨ Key Features
+## ✨ Features
 
-- 🤖 **AI-Powered Review Engine** — Gemini AI analyses your code in-depth, providing human-quality review insights
-- 📊 **Real-Time Quality Score Gauge** — Animated SVG ring gauge shows a 0–100 code quality score at a glance
-- ✅ **Pass / Fail Scoring System** — Clear threshold-based scoring so you always know if your code is production-ready
-- 🐛 **Findings & Bug Tracking** — Categorized findings (Bug, Security, Performance, Style) with file and line references
-- 📜 **Full Review History** — Paginated, searchable, and filterable history of all your past reviews
-- 📋 **Paste Code & File Upload** — Two flexible submission workflows with a Monaco editor for an IDE-like experience
-- 🌓 **Light / Dark Mode** — Polished theme system with `localStorage` persistence and `prefers-color-scheme` detection
-- 🎨 **Glassmorphism UI** — Frosted glass cards, gradient accents, and sakura-pink brand palette
-- 🌐 **Multi-Language Support** — JavaScript, TypeScript, Python, Java, C++, C#, Go, Rust, PHP and more
-- 🔒 **Secure Auth** — JWT-based authentication with httpOnly cookies and route protection
-- 📈 **Complexity Analysis** — Per-file cyclomatic complexity and dependency graph visualisation
+- 🤖 **AI-Powered Review Engine** — Gemini AI performs deep code analysis and returns structured JSON: score, summary, strengths, weaknesses, and categorized findings
+- 📊 **Real-Time Quality Score** — Animated 0–100 gauge with pass/fail threshold scoring
+- 🐛 **Findings & Bug Tracking** — Findings categorized by source (`STATIC_ANALYSIS` / `AI_MODEL`) and severity (`LOW` / `MEDIUM` / `HIGH` / `CRITICAL`)
+- 📈 **Complexity Reports** — Per-review cyclomatic complexity, lines of code, function count, class count, and maintainability index
+- 📜 **Review History** — Paginated, searchable, multi-filter history (status, language, submission type)
+- 📋 **Dual Submission Workflow** — Paste code in a Monaco editor or drag-and-drop file uploads (up to 10 files × 5MB each)
+- 🔒 **JWT Auth** — Secure httpOnly cookie-based authentication with bcrypt password hashing
+- 🌓 **Light / Dark Mode** — Theme persisted in `localStorage` with `prefers-color-scheme` detection on first load
+- 🌐 **Multi-Language Support** — JavaScript, TypeScript, Python, Java, C++, C#, Go, Rust, PHP
+- 🗄️ **Serverless Database** — Neon PostgreSQL with full cascade deletes — removing a review cleans all files, findings, and analysis records automatically
+
+---
+
+## 🏗️ Architecture
+
+### System Architecture
+
+```mermaid
+graph TD
+  Client["⚛️ React 19 Frontend\n(Vercel)"] -->|REST API / httpOnly Cookies| API["🚀 Express 5 API\n(Railway)"]
+  API -->|isLoggedIn Middleware| MW["🔐 JWT Auth Middleware"]
+  MW --> Controllers["📂 Controllers"]
+  Controllers -->|Prisma ORM| DB[("🐘 Neon PostgreSQL\n(Serverless)")]
+  Controllers -->|fire-and-forget| Pipeline["⚙️ pipelineService.js"]
+  Pipeline -->|Prisma reads/writes| DB
+  Pipeline -->|@google/genai SDK| Gemini["🤖 Google Gemini AI\n(gemini-2.0-flash-lite)"]
+```
+
+### AI Pipeline Sequence
+
+```mermaid
+sequenceDiagram
+  participant C as React Client
+  participant API as Express API
+  participant DB as Neon PostgreSQL
+  participant AI as Google Gemini
+
+  C->>API: POST /submissions (code/files)
+  API->>DB: INSERT Review (status=PENDING)
+  API->>DB: INSERT CodeFile(s)
+  API-->>C: 201 { review: { id, status: "PENDING" } }
+
+  Note over API: runFullPipeline() fires async (non-blocking)
+
+  API->>DB: UPDATE Review status=ANALYZING
+  API->>DB: INSERT StaticAnalysis
+  API->>DB: INSERT ComplexityReport
+  API->>DB: UPDATE Review status=AI_REVIEW
+  API->>AI: generateContent(structured prompt + full code)
+  AI-->>API: JSON { score, summary, findings[], suggestions[] }
+  API->>DB: INSERT AIReview + Finding[]
+  API->>DB: UPDATE Review status=COMPLETED, overallScore=N
+
+  loop Every 2 seconds
+    C->>API: GET /reviews/:id
+    API-->>C: { status, overallScore, findings, ... }
+  end
+  C->>C: Navigate to /report/:id when COMPLETED
+```
+
+### Auth Flow
+
+```mermaid
+flowchart TD
+  A[POST /auth/register or /auth/login] --> B{Credentials valid?}
+  B -->|No| C[401 / 400 Error Response]
+  B -->|Yes| D[Sign JWT with JWT_SECRET]
+  D --> E[Set httpOnly cookie 'token']
+  E --> F[Return user object]
+
+  G[Protected Request] --> H[isLoggedIn Middleware]
+  H --> I{Cookie 'token' present?}
+  I -->|No| J[401 Unauthorized]
+  I -->|Yes| K[jwt.verify with JWT_SECRET]
+  K -->|Invalid/Expired| L[401 Unauthorized]
+  K -->|Valid| M[Attach req.user = decoded payload]
+  M --> N[Call next() → Controller]
+```
+
+---
+
+## 🗄️ Database Schema
+
+> 💡 **This ER diagram renders interactively on GitHub** — you can click and drag to pan, and scroll to zoom within GitHub's native Mermaid viewer.
+
+```mermaid
+erDiagram
+  User {
+    String id PK
+    String name
+    String email UK
+    String password
+    DateTime createdAt
+    DateTime updatedAt
+  }
+
+  Review {
+    String id PK
+    String userId FK
+    String title
+    String description
+    SubmissionType submissionType
+    String language
+    ReviewStatus status
+    Int overallScore
+    String summary
+    DateTime createdAt
+    DateTime updatedAt
+  }
+
+  CodeFile {
+    String id PK
+    String reviewId FK
+    String fileName
+    String extension
+    String language
+    String content
+    Int size
+    DateTime createdAt
+  }
+
+  StaticAnalysis {
+    String id PK
+    String reviewId FK_UK
+    Json summary
+    Json rawOutput
+  }
+
+  ComplexityReport {
+    String id PK
+    String reviewId FK_UK
+    Int cyclomaticComplexity
+    Int linesOfCode
+    Int functionCount
+    Int classCount
+    Float maintainability
+    Json breakdown
+  }
+
+  AIReview {
+    String id PK
+    String reviewId FK_UK
+    Json reviewJson
+    DateTime createdAt
+  }
+
+  Finding {
+    String id PK
+    String reviewId FK
+    FindingSource source
+    Severity severity
+    String type
+    String title
+    String description
+    String suggestion
+    String fileName
+    Int lineNumber
+  }
+
+  User ||--o{ Review : "owns"
+  Review ||--o{ CodeFile : "contains"
+  Review ||--o| StaticAnalysis : "has"
+  Review ||--o| ComplexityReport : "has"
+  Review ||--o| AIReview : "has"
+  Review ||--o{ Finding : "produces"
+```
+
+### Interactive Schema Explorer
+
+For a fully pannable, zoomable visual ER diagram, paste the contents of [`docs/schema.dbml`](./docs/schema.dbml) into **[dbdiagram.io](https://dbdiagram.io)**.
+
+---
+
+## 📊 Project Stats
+
+### Dependency Breakdown
+
+```mermaid
+pie title Backend Dependencies (by category)
+  "AI & ML" : 1
+  "Database (Prisma/pg)" : 3
+  "Auth (JWT/bcrypt)" : 2
+  "HTTP/Server (Express/cors/multer/cookie-parser)" : 5
+  "Config (dotenv)" : 1
+```
+
+```mermaid
+pie title Frontend Dependencies (by category)
+  "UI & Styling (Tailwind/framer-motion/lucide)" : 3
+  "State & Data (Redux/axios)" : 3
+  "React Core" : 3
+  "Editor & Charts (Monaco/Recharts)" : 2
+  "Routing & Forms (react-router/react-dropzone)" : 2
+  "Fonts & Notifications" : 2
+```
 
 ---
 
@@ -80,263 +250,291 @@ LUMUS features a production-grade, responsive dashboard with a polished glassmor
 
 | Layer | Technology |
 |---|---|
-| **Frontend Framework** | [![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black)](https://react.dev) + Vite |
-| **Styling** | [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-v3-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com) with custom design tokens |
-| **State Management** | [![Redux Toolkit](https://img.shields.io/badge/Redux_Toolkit-764ABC?logo=redux&logoColor=white)](https://redux-toolkit.js.org) |
-| **Code Editor** | [![Monaco Editor](https://img.shields.io/badge/Monaco_Editor-007ACC?logo=visualstudiocode&logoColor=white)](https://microsoft.github.io/monaco-editor/) |
-| **Charts** | [![Recharts](https://img.shields.io/badge/Recharts-22b5bf)](https://recharts.org) |
-| **HTTP Client** | [![Axios](https://img.shields.io/badge/Axios-5A29E4?logo=axios&logoColor=white)](https://axios-http.com) |
-| **Backend Runtime** | [![Node.js](https://img.shields.io/badge/Node.js-22-339933?logo=node.js&logoColor=white)](https://nodejs.org) + Express 5 |
-| **AI Engine** | [![Google Gemini](https://img.shields.io/badge/Google_Gemini_AI-4285F4?logo=google&logoColor=white)](https://ai.google.dev) |
-| **Database ORM** | [![Prisma](https://img.shields.io/badge/Prisma-2D3748?logo=prisma&logoColor=white)](https://prisma.io) + PostgreSQL |
-| **Auth** | JWT (httpOnly cookies) + bcrypt |
-| **Deployment** | [![Vercel](https://img.shields.io/badge/Frontend-Vercel-000000?logo=vercel&logoColor=white)](https://vercel.com) / [![Render](https://img.shields.io/badge/Backend-Render-46E3B7?logo=render&logoColor=black)](https://render.com) |
+| **Frontend** | React 19 + Vite 8 |
+| **Styling** | TailwindCSS v4 + custom sakura design tokens |
+| **State** | Redux Toolkit + React Context |
+| **Code Editor** | `@monaco-editor/react` |
+| **Charts** | Recharts 3 |
+| **Backend** | Node.js 22 + Express 5 (ESM) |
+| **AI Engine** | Google Gemini (`@google/genai`) |
+| **ORM** | Prisma 7 + `@prisma/adapter-pg` |
+| **Database** | Neon PostgreSQL (serverless) |
+| **Auth** | JWT + bcrypt + httpOnly cookies |
+| **File Uploads** | Multer (memory storage) |
+| **Frontend Deploy** | Vercel |
+| **Backend Deploy** | Railway |
 
 ---
 
-## 🖥️ Live Demo & Screenshots
-
-> **Live App:** [https://lumus-demo.vercel.app](https://lumus-demo.vercel.app)
-> <!-- TODO: replace with actual deployment URL -->
-
-<!-- TODO: Use demo credentials below if you set up a guest account -->
-> **Demo Login:**
-> - Email: `demo@lumus.app`
-> - Password: `demo1234`
-
-### Screenshots
-
-<div align="center">
-
-| Dashboard | Review Report |
-|---|---|
-| <!-- TODO: --> <img src="./assets/screenshots/dashboard.png" alt="Dashboard" width="420" /> | <!-- TODO: --> <img src="./assets/screenshots/report.png" alt="Report" width="420" /> |
-
-| Review History | Theme Toggle |
-|---|---|
-| <!-- TODO: --> <img src="./assets/screenshots/history.png" alt="History" width="420" /> | <!-- TODO: --> <img src="./assets/screenshots/theme-toggle.png" alt="Theme" width="420" /> |
-
-</div>
-
----
-
-## 🎨 UI Highlights & Interactions
-
-LUMUS isn't just functional — it's designed to *feel* alive. Every interaction has been carefully crafted to give the UI a premium, responsive quality:
-
-- **🔴 Animated Score Gauge** — The donut chart on the dashboard and report pages uses Recharts with a live inner-text score that updates as your review data loads, giving instant visual feedback.
-- **🪟 Glassmorphism Cards** — Every stat card, review tile, and panel uses `backdrop-blur`, translucent backgrounds, and a soft drop shadow that shifts on hover — creating a sense of layered depth.
-- **✨ Hover Micro-animations** — Buttons scale with `hover:scale-[1.02]`, cards lift with `hover:shadow-lg`, and icon containers pulse with an `animate-float` keyframe — driven by Tailwind with zero JS overhead.
-- **🌓 Theme Crossfade Toggle** — The light/dark mode switch crossfades a sun/moon icon pair in 300ms. The full theme switch is instantaneous, toggling a `dark` class on `<html>` via React context.
-- **📝 Monaco Editor Integration** — The code paste panel embeds VS Code's own Monaco editor, giving you syntax highlighting, line numbers, and language-aware rendering in the browser.
-- **🎞️ Page Entrance Animations** — Each section uses staggered `animate-fadeInUp` with `animationDelay` offsets, so the dashboard builds itself visually as it loads.
-
----
-
-## 🚀 Getting Started
+## ⚡ Quick Start
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org) >= **18.0.0**
-- [npm](https://npmjs.com) >= **9.0.0** or [Yarn](https://yarnpkg.com)
-- A running [PostgreSQL](https://www.postgresql.org) database instance
-- A [Google AI Studio](https://aistudio.google.com) API key
+- **Node.js** >= 18.0.0
+- **npm** >= 9.0.0
+- A **[Neon](https://neon.tech)** account (free tier works) — no local PostgreSQL required
+- A **[Google AI Studio](https://aistudio.google.com)** API key (free)
 
 ### Installation
 
 ```bash
-# 1. Clone the repository
+# Clone the repository
 git clone https://github.com/boxbiswas/AI_CODE_REVIEW_ASSISTANT.git
 cd AI_CODE_REVIEW_ASSISTANT
 
-# 2. Install Backend dependencies
-cd backend
-npm install
+# Install backend dependencies
+cd backend && npm install
 
-# 3. Install Frontend dependencies
-cd ../frontend
-npm install
+# Install frontend dependencies
+cd ../frontend && npm install
 ```
 
-### Environment Setup
+### Environment Variables
 
-Create a `.env` file in the **`/backend`** directory:
+**Backend** — create `backend/.env`:
 
 ```env
-# Server
 PORT=3000
 NODE_ENV=development
 
-# Database (PostgreSQL)
-DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DBNAME"
+# Neon PostgreSQL — copy from your Neon project dashboard > Connection String
+DATABASE_URL="postgresql://user:password@ep-xxxx-xxxx.us-east-2.aws.neon.tech/neondb?sslmode=require"
 
-# JWT Auth
-JWT_SECRET=your_super_secret_jwt_key_here
+# JWT — generate with: node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
+JWT_SECRET=your_minimum_32_character_random_secret_here
 
-# Google Gemini AI
-GEMINI_API_KEY=your_google_ai_studio_api_key_here
+# Google AI Studio API key
+GEMINI_API_KEY=AIzaSy_your_key_here
 ```
 
-| Variable | Description | Required |
-|---|---|---|
-| `DATABASE_URL` | PostgreSQL connection string | ✅ |
-| `JWT_SECRET` | Long random string for signing JWTs | ✅ |
-| `GEMINI_API_KEY` | Google AI Studio API key | ✅ |
-| `PORT` | Backend server port (default: 3000) | ⬜ |
+**Frontend** — create `frontend/.env`:
 
-### Running the App
+```env
+VITE_API_URL=http://localhost:3000
+```
+
+| Variable | Where | Description |
+|---|---|---|
+| `DATABASE_URL` | backend | Neon PostgreSQL connection string (includes `?sslmode=require`) |
+| `JWT_SECRET` | backend | Minimum 32-char random string for signing JWTs |
+| `GEMINI_API_KEY` | backend | Google AI Studio API key |
+| `PORT` | backend | Server port (default: `3000`) |
+| `VITE_API_URL` | frontend | Backend base URL used by Axios |
+
+### Database Setup
 
 ```bash
-# Run database migrations
 cd backend
-npx prisma migrate dev
 
-# Start the backend (terminal 1)
+# Apply the Prisma schema to your Neon database
+npx prisma migrate dev --name init
+
+# (Optional) Open Prisma Studio to browse your data
+npx prisma studio
+```
+
+### Run the App
+
+```bash
+# Terminal 1 — Backend
+cd backend
 npm run dev
 
-# Start the frontend (terminal 2)
-cd ../frontend
+# Terminal 2 — Frontend
+cd frontend
 npm run dev
 ```
 
-The frontend will be available at **`http://localhost:5173`** and the backend API at **`http://localhost:3000`**.
+- Frontend: **http://localhost:5173**
+- Backend API: **http://localhost:3000**
 
 ---
 
 ## 📁 Project Structure
 
 <details>
-<summary><strong>Click to expand the full folder tree</strong></summary>
+<summary><strong>Expand full folder tree</strong></summary>
 
 ```
 AI_CODE_REVIEW_ASSISTANT/
 │
-├── 📂 backend/                     # Node.js + Express API server
-│   ├── 📂 controllers/             # Route handler logic
-│   │   ├── authController.js
-│   │   ├── submissionController.js
-│   │   ├── reviewController.js
-│   │   ├── historyController.js
-│   │   └── complexityController.js
-│   ├── 📂 middlewares/             # Auth & error middleware
-│   │   └── verifyToken.js
-│   ├── 📂 routes/                  # Express route definitions
-│   │   ├── auth.js
-│   │   ├── submissions.js
-│   │   ├── reviews.js
-│   │   └── history.js
-│   ├── 📂 services/                # Business logic & AI integration
-│   │   ├── aiService.js            # Gemini AI prompt & parsing
-│   │   └── pipelineService.js      # Full analysis pipeline orchestrator
-│   ├── 📂 lib/                     # Shared utilities
-│   │   └── prisma.js               # Prisma client singleton
-│   ├── 📂 prisma/                  # Database schema & migrations
-│   │   └── schema.prisma
-│   └── app.js                      # Express app entry point
+├── 📂 backend/
+│   ├── 📂 controllers/
+│   │   ├── authController.js         # register, login, logout
+│   │   ├── submissionController.js   # submitCode → triggers pipeline
+│   │   ├── reviewController.js       # CRUD for reviews
+│   │   ├── historyController.js      # paginated history + delete
+│   │   ├── dashboardController.js    # aggregate stats
+│   │   ├── staticController.js       # static analysis trigger
+│   │   ├── complexityController.js   # complexity report trigger
+│   │   └── aiController.js           # AI review trigger
+│   ├── 📂 middlewares/
+│   │   └── authMiddleware.js         # isLoggedIn (JWT verify + req.user)
+│   ├── 📂 routes/
+│   │   ├── authRoutes.js
+│   │   ├── reviewRoutes.js
+│   │   ├── submissionRoutes.js       # multer file upload handling
+│   │   ├── historyRoutes.js
+│   │   ├── dashboardRoutes.js
+│   │   ├── staticRoutes.js
+│   │   ├── complexityRoutes.js
+│   │   └── aiRoutes.js
+│   ├── 📂 services/
+│   │   ├── aiService.js              # Gemini prompt builder + response parser
+│   │   └── pipelineService.js        # 4-stage async orchestrator
+│   ├── 📂 lib/
+│   │   └── prisma.js                 # Prisma Client singleton
+│   ├── 📂 prisma/
+│   │   ├── schema.prisma             # Database schema
+│   │   └── 📂 migrations/
+│   ├── app.js                        # Express app + CORS + route mounting
+│   └── package.json
 │
-└── 📂 frontend/                    # React + Vite client app
-    └── 📂 src/
-        ├── 📂 components/          # Reusable UI components
-        │   ├── 📂 Auth/
-        │   ├── 📂 Dashboard/
-        │   ├── 📂 History/
-        │   ├── 📂 NewReview/
-        │   ├── 📂 Report/
-        │   └── 📂 common/
-        ├── 📂 pages/               # Top-level page components
-        ├── 📂 redux/               # Redux Toolkit store & slices
-        ├── 📂 context/             # React Context (ThemeContext)
-        ├── 📂 https/               # Axios instance & interceptors
-        └── 📂 hooks/               # Custom React hooks
+├── 📂 frontend/
+│   └── 📂 src/
+│       ├── 📂 components/
+│       │   ├── 📂 Auth/              # AuthBrand, AuthInput
+│       │   ├── 📂 Dashboard/         # DashboardHero, StatCard, RecentReviews, ScoreGauge
+│       │   ├── 📂 History/           # HistoryFilters, ReviewCard, Pagination
+│       │   ├── 📂 NewReview/         # AnalysisModal, CodePasteSection, LanguageSelector, UploadSection
+│       │   ├── 📂 Report/            # ScoreCard, SummaryPanel, FindingsTable, ComplexityPanel, AISuggestionsPanel
+│       │   ├── 📂 common/            # DeleteConfirmModal
+│       │   └── Layout.jsx            # App shell (sidebar + header)
+│       ├── 📂 pages/                 # Dashboard, Login, Register, NewReview, Report, History
+│       ├── 📂 redux/                 # store.js + slices (authSlice, dashboardSlice)
+│       ├── 📂 context/               # ThemeContext.jsx
+│       ├── 📂 https/                 # axios.js (base URL + 401 interceptor)
+│       ├── App.jsx                   # Router + protected routes
+│       └── main.jsx
+│
+└── 📂 docs/
+    └── schema.dbml                   # DBML schema for dbdiagram.io
 ```
 
 </details>
 
 ---
 
-## 📖 Usage
+## 🔌 API Reference
 
-### 1. Register & Login
-Create an account or log in. Your session is persisted securely via an httpOnly JWT cookie.
+All endpoints are prefixed at the root (no `/api` prefix). Protected routes require the `token` httpOnly cookie set at login.
 
-### 2. Start a New Review
-Navigate to **New Review** from the sidebar. Choose between:
-- **📋 Paste Code** — Use the built-in Monaco editor, select a language, and paste your snippet
-- **📁 Upload Files** — Drag-and-drop or click to upload one or more source files
+### 🔐 Auth — `/auth`
 
-### 3. Analyze
-Click **Analyze Code**. A modal tracks the pipeline progress in real time:
-`Uploading → Pending → Analyzing → AI Review → Completed`
+| Method | Endpoint | Description | Auth |
+|---|---|---|---|
+| `POST` | `/auth/register` | Create a new user account | ❌ |
+| `POST` | `/auth/login` | Log in; sets `token` httpOnly cookie | ❌ |
+| `POST` | `/auth/logout` | Clears the `token` cookie | ✅ |
 
-### 4. Read Your Report
-The Report page is divided into tabs:
-- **Overview** — Score gauge, executive summary, strengths & weaknesses
-- **Static Analysis** — Findings table with severity badges
-- **Complexity** — Per-file complexity scores and dependency graph
-- **AI Review** — Full AI-generated narrative with improvement suggestions
+### 📤 Submissions — `/submissions`
 
-### 5. Browse History
-The **History** page shows all past reviews with live search, status/language/type filters, and pagination. Delete any review with one click.
+| Method | Endpoint | Description | Auth |
+|---|---|---|---|
+| `POST` | `/submissions` | Submit code/files; triggers async AI pipeline | ✅ |
+
+**Body** (multipart/form-data): `title`, `submissionType` (`PASTED_CODE`\|`FILE_UPLOAD`), `language`, `pastedCode` or `files[]` (max 10 × 5MB)
+
+### 📋 Reviews — `/reviews`
+
+| Method | Endpoint | Description | Auth |
+|---|---|---|---|
+| `POST` | `/reviews` | Create a review record manually | ✅ |
+| `GET` | `/reviews` | List all reviews for the current user | ✅ |
+| `GET` | `/reviews/:id` | Get full review details + all analysis data | ✅ |
+| `DELETE` | `/reviews/:id` | Delete review + cascade all child records | ✅ |
+
+### 📜 History — `/history`
+
+| Method | Endpoint | Description | Auth |
+|---|---|---|---|
+| `GET` | `/history` | Paginated, filterable review history | ✅ |
+| `DELETE` | `/history/:reviewId` | Delete a review from history | ✅ |
+
+**Query params**: `page`, `limit`, `search`, `status`, `language`, `submissionType`
+
+### 📊 Dashboard — `/dashboard`
+
+| Method | Endpoint | Description | Auth |
+|---|---|---|---|
+| `GET` | `/dashboard` | Aggregate stats + recent reviews | ✅ |
+
+### ⚙️ Analysis Pipeline (internal triggers)
+
+| Method | Endpoint | Description | Auth |
+|---|---|---|---|
+| `POST` | `/static/:reviewId/analyze-static` | Run static analysis on a review | ✅ |
+| `POST` | `/complexity/:reviewId/analyze-complexity` | Run complexity analysis | ✅ |
+| `POST` | `/ai/:reviewId/analyze-ai` | Run Gemini AI review | ✅ |
+
+> **Note:** The three pipeline endpoints above are called internally by `pipelineService.js`. You do not need to call them directly — submitting via `POST /submissions` triggers the full pipeline automatically.
 
 ---
 
-## 🗺️ Roadmap
+## 🗄️ Database
 
-<details>
-<summary><strong>View full roadmap</strong></summary>
+The database is hosted on **[Neon](https://neon.tech)** — a serverless PostgreSQL provider. Key advantages for this project:
+- **Scale to zero** — Neon pauses compute when idle, so there are no idle costs
+- **Branching** — Neon supports database branches (useful for staging environments)
+- **No local Postgres needed** — just paste the `DATABASE_URL` connection string into `.env`
 
-### ✅ Completed
+All tables use cascade deletes. Deleting a `Review` automatically removes its `CodeFile`s, `StaticAnalysis`, `ComplexityReport`, `AIReview`, and all `Finding`s in a single Prisma `.delete()` call.
 
-- [x] User authentication (Register / Login / Logout)
-- [x] Code paste workflow with Monaco editor
-- [x] File upload workflow with drag-and-drop
-- [x] Full AI review pipeline (static + complexity + AI narrative)
-- [x] Review report page with tabbed navigation
-- [x] Overall quality score gauge (0–100)
-- [x] Findings/bug tracking with severity categorization
-- [x] Dashboard with stats, score chart, and recent reviews
-- [x] Review history with pagination, search, and filters
-- [x] Delete reviews with cascade cleanup
-- [x] Light / Dark mode with localStorage persistence
-- [x] Glassmorphism UI with sakura-pink design system
-- [x] Responsive layout (mobile → desktop)
+See the [ER diagram](#️-database-schema) above, or explore interactively via [docs/schema.dbml](./docs/schema.dbml) on [dbdiagram.io](https://dbdiagram.io).
 
-### 🔜 Planned
+---
 
-- [ ] GitHub OAuth integration (login with GitHub)
-- [ ] GitHub PR integration — review PRs directly from a URL
-- [ ] Team / organization accounts with shared review history
-- [ ] Webhook support for CI/CD pipeline integration
-- [ ] Inline code annotations in the report view
-- [ ] Export report as PDF or Markdown
-- [ ] Custom review rulesets (configure severity thresholds)
-- [ ] VS Code extension for in-editor LUMUS reviews
-- [ ] Email digest of weekly review summaries
-- [ ] Public API with API key management
+## 🚀 Deployment
 
-</details>
+### Frontend (Vercel)
+
+The frontend is deployed on **Vercel** at [`ai-review-frontend-lovat.vercel.app`](https://ai-review-frontend-lovat.vercel.app).
+
+1. Push to `main` — Vercel auto-deploys
+2. Set environment variable in Vercel dashboard:
+   - `VITE_API_URL` = your Railway backend URL (e.g. `https://your-app.railway.app`)
+
+### Backend (Railway)
+
+The backend is deployed on **Railway**. It binds to `0.0.0.0` for Railway's proxy routing.
+
+1. Connect the GitHub repo in Railway
+2. Set these environment variables in the Railway dashboard:
+
+| Variable | Value |
+|---|---|
+| `DATABASE_URL` | Your Neon connection string (with `?sslmode=require`) |
+| `JWT_SECRET` | Your secret key |
+| `GEMINI_API_KEY` | Your Google AI Studio key |
+| `PORT` | `3000` (or Railway auto-assigns) |
+| `NODE_ENV` | `production` |
+
+3. Railway runs `npm start` → `node app.js` (from `package.json` scripts)
+4. The `postinstall` script (`prisma generate`) runs automatically after `npm install` on each deploy
+
+### CORS
+
+The backend CORS allowlist in `app.js` includes:
+- `http://localhost:5173` (local dev)
+- `https://ai-review-frontend-lovat.vercel.app` (production)
+
+Add your custom domain to this array if you deploy under a different URL.
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are what make the open-source community such an amazing place to learn and build. Any contributions you make are **greatly appreciated**!
-
-1. **Fork** the repository
-2. **Create** a feature branch: `git checkout -b feature/AmazingFeature`
-3. **Commit** your changes: `git commit -m 'feat: add AmazingFeature'`
-4. **Push** to your branch: `git push origin feature/AmazingFeature`
-5. **Open a Pull Request** — describe what you changed and why
-
-Please read our [Contributing Guide](./CONTRIBUTING.md) for detailed code style guidelines.
-
-> **Good first issues** are tagged with the `good-first-issue` label in the [Issues](https://github.com/boxbiswas/AI_CODE_REVIEW_ASSISTANT/issues) tab.
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/your-feature`
+3. Commit your changes: `git commit -m 'feat: add your feature'`
+4. Push to the branch: `git push origin feature/your-feature`
+5. Open a Pull Request
 
 ---
 
 ## 📄 License
 
-Distributed under the **MIT License**. See [`LICENSE`](./LICENSE) for more information.
+Distributed under the **ISC License**. See [`package.json`](./backend/package.json) for details.
 
 ---
 
@@ -345,9 +543,6 @@ Distributed under the **MIT License**. See [`LICENSE`](./LICENSE) for more infor
 **Indranil Biswas**
 
 [![GitHub](https://img.shields.io/badge/GitHub-boxbiswas-181717?style=for-the-badge&logo=github)](https://github.com/boxbiswas)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/your-linkedin-username) <!-- TODO: replace -->
-[![Twitter](https://img.shields.io/badge/Twitter-@yourhandle-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/yourhandle) <!-- TODO: replace -->
-[![Email](https://img.shields.io/badge/Email-yourmail@example.com-ec4899?style=for-the-badge&logo=gmail&logoColor=white)](mailto:yourmail@example.com) <!-- TODO: replace -->
 
 ---
 

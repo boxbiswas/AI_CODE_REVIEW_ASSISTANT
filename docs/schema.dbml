@@ -1,0 +1,83 @@
+// LUMUS — Database Schema (DBML)
+// Paste this into https://dbdiagram.io for a fully interactive ER diagram.
+// Auto-generated from prisma/schema.prisma
+
+Table User {
+  id        varchar [pk, note: "UUID v4"]
+  name      varchar [not null]
+  email     varchar [not null, unique]
+  password  varchar [not null, note: "bcrypt hash"]
+  createdAt timestamp [not null, default: `now()`]
+  updatedAt timestamp [not null]
+}
+
+Table Review {
+  id             varchar [pk, note: "UUID v4"]
+  userId         varchar [not null, ref: > User.id]
+  title          varchar
+  description    text
+  submissionType varchar [not null, note: "PASTED_CODE | FILE_UPLOAD"]
+  language       varchar
+  status         varchar [not null, default: "PENDING", note: "PENDING | ANALYZING | AI_REVIEW | COMPLETED | FAILED"]
+  overallScore   int
+  summary        text
+  createdAt      timestamp [not null, default: `now()`]
+  updatedAt      timestamp [not null]
+}
+
+Table CodeFile {
+  id        varchar [pk, note: "UUID v4"]
+  reviewId  varchar [not null, ref: > Review.id]
+  fileName  varchar [not null]
+  extension varchar [not null]
+  language  varchar [not null]
+  content   text [not null]
+  size      int [not null, note: "bytes"]
+  createdAt timestamp [not null, default: `now()`]
+}
+
+Table StaticAnalysis {
+  id        varchar [pk, note: "UUID v4"]
+  reviewId  varchar [not null, unique, ref: - Review.id]
+  summary   json [not null]
+  rawOutput json [not null]
+}
+
+Table ComplexityReport {
+  id                   varchar [pk, note: "UUID v4"]
+  reviewId             varchar [not null, unique, ref: - Review.id]
+  cyclomaticComplexity int
+  linesOfCode          int
+  functionCount        int
+  classCount           int
+  maintainability      float
+  breakdown            json [not null]
+}
+
+Table AIReview {
+  id         varchar [pk, note: "UUID v4"]
+  reviewId   varchar [not null, unique, ref: - Review.id]
+  reviewJson json [not null, note: "{ score, summary, strengths[], weaknesses[], suggestions[] }"]
+  createdAt  timestamp [not null, default: `now()`]
+}
+
+Table Finding {
+  id          varchar [pk, note: "UUID v4"]
+  reviewId    varchar [not null, ref: > Review.id]
+  source      varchar [not null, note: "STATIC_ANALYSIS | AI_MODEL"]
+  severity    varchar [not null, note: "LOW | MEDIUM | HIGH | CRITICAL"]
+  type        varchar [not null]
+  title       varchar [not null]
+  description text [not null]
+  suggestion  text
+  fileName    varchar
+  lineNumber  int
+}
+
+// Relationships summary:
+// User      1 --< Review          (one user has many reviews; cascade delete)
+// Review    1 --< CodeFile        (one review has many code files; cascade delete)
+// Review    1 --  StaticAnalysis  (one-to-one; cascade delete)
+// Review    1 --  ComplexityReport(one-to-one; cascade delete)
+// Review    1 --  AIReview        (one-to-one; cascade delete)
+// Review    1 --< Finding         (one review has many findings; cascade delete)
