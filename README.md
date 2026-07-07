@@ -67,13 +67,13 @@ The backend is a **Node.js + Express 5** REST API with a 4-stage asynchronous an
 
 ```mermaid
 graph TD
-  Client["⚛️ React 19 Frontend\n(Vercel)"] -->|REST API / httpOnly Cookies| API["🚀 Express 5 API\n(Railway)"]
+  Client["⚛️ React 19 Frontend (Vercel)"] -->|REST API / httpOnly Cookies| API["🚀 Express 5 API (Railway)"]
   API -->|isLoggedIn Middleware| MW["🔐 JWT Auth Middleware"]
   MW --> Controllers["📂 Controllers"]
-  Controllers -->|Prisma ORM| DB[("🐘 Neon PostgreSQL\n(Serverless)")]
+  Controllers -->|Prisma ORM| DB[("🐘 Neon PostgreSQL (Serverless)")]
   Controllers -->|fire-and-forget| Pipeline["⚙️ pipelineService.js"]
   Pipeline -->|Prisma reads/writes| DB
-  Pipeline -->|@google/genai SDK| Gemini["🤖 Google Gemini AI\n(gemini-2.0-flash-lite)"]
+  Pipeline -->|genai SDK| Gemini["🤖 Google Gemini AI (gemini-2.0-flash-lite)"]
 ```
 
 ### AI Pipeline Sequence
@@ -123,8 +123,8 @@ flowchart TD
   I -->|No| J[401 Unauthorized]
   I -->|Yes| K[jwt.verify with JWT_SECRET]
   K -->|Invalid/Expired| L[401 Unauthorized]
-  K -->|Valid| M[Attach req.user = decoded payload]
-  M --> N[Call next() → Controller]
+  K -->|Valid| M["Attach req.user = decoded payload"]
+  M --> N["Call next() -- routed to Controller"]
 ```
 
 ---
@@ -149,9 +149,9 @@ erDiagram
     String userId FK
     String title
     String description
-    SubmissionType submissionType
+    String submissionType
     String language
-    ReviewStatus status
+    String status
     Int overallScore
     String summary
     DateTime createdAt
@@ -171,34 +171,34 @@ erDiagram
 
   StaticAnalysis {
     String id PK
-    String reviewId FK_UK
-    Json summary
-    Json rawOutput
+    String reviewId FK
+    String summary
+    String rawOutput
   }
 
   ComplexityReport {
     String id PK
-    String reviewId FK_UK
+    String reviewId FK
     Int cyclomaticComplexity
     Int linesOfCode
     Int functionCount
     Int classCount
     Float maintainability
-    Json breakdown
+    String breakdown
   }
 
   AIReview {
     String id PK
-    String reviewId FK_UK
-    Json reviewJson
+    String reviewId FK
+    String reviewJson
     DateTime createdAt
   }
 
   Finding {
     String id PK
     String reviewId FK
-    FindingSource source
-    Severity severity
+    String source
+    String severity
     String type
     String title
     String description
@@ -226,22 +226,21 @@ For a fully pannable, zoomable visual ER diagram, paste the contents of [`docs/s
 ### Dependency Breakdown
 
 ```mermaid
-pie title Backend Dependencies (by category)
-  "AI & ML" : 1
-  "Database (Prisma/pg)" : 3
-  "Auth (JWT/bcrypt)" : 2
-  "HTTP/Server (Express/cors/multer/cookie-parser)" : 5
-  "Config (dotenv)" : 1
+%%{init: {'theme': 'dark', 'themeVariables': {'xyChart': {'backgroundColor': '#0d1117', 'plotColorPalette': '#f9a8d4,#f472b6,#e879f9,#a855f7,#6366f1'}}}}%%
+xychart-beta
+    title "Backend Dependencies (by category)"
+    x-axis ["AI & ML", "Database", "Auth", "HTTP & Server", "Config"]
+    y-axis "Package count" 0 --> 6
+    bar [1, 3, 2, 5, 1]
 ```
 
 ```mermaid
-pie title Frontend Dependencies (by category)
-  "UI & Styling (Tailwind/framer-motion/lucide)" : 3
-  "State & Data (Redux/axios)" : 3
-  "React Core" : 3
-  "Editor & Charts (Monaco/Recharts)" : 2
-  "Routing & Forms (react-router/react-dropzone)" : 2
-  "Fonts & Notifications" : 2
+%%{init: {'theme': 'dark', 'themeVariables': {'xyChart': {'backgroundColor': '#0d1117', 'plotColorPalette': '#61DAFB,#38bdf8,#34d399,#a3e635,#fb923c,#c084fc'}}}}%%
+xychart-beta
+    title "Frontend Dependencies (by category)"
+    x-axis ["UI & Styling", "State & Data", "React Core", "Editor & Charts", "Routing & Forms", "Fonts & Notif"]
+    y-axis "Package count" 0 --> 4
+    bar [3, 3, 3, 2, 2, 2]
 ```
 
 ---
