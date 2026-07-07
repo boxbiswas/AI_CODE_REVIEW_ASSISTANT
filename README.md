@@ -67,7 +67,7 @@ The backend is a **Node.js + Express 5** REST API with a 4-stage asynchronous an
 
 ```mermaid
 graph TD
-  Client["⚛️ React 19 Frontend (Vercel)"] -->|REST API / httpOnly Cookies| API["🚀 Express 5 API (Railway)"]
+  Client["⚛️ React 19 Frontend (Vercel)"] -->|REST API / httpOnly Cookies| API["🚀 Express 5 API (Render)"]
   API -->|isLoggedIn Middleware| MW["🔐 JWT Auth Middleware"]
   MW --> Controllers["📂 Controllers"]
   Controllers -->|Prisma ORM| DB[("🐘 Neon PostgreSQL (Serverless)")]
@@ -228,21 +228,26 @@ For a fully pannable, zoomable visual ER diagram, paste the contents of [`docs/s
 **Backend** — 12 direct dependencies across 5 categories:
 
 ```mermaid
-xychart-beta
-    title "Backend: packages per category"
-    x-axis ["AI & ML", "Database", "Auth", "HTTP & Server", "Config"]
-    y-axis "Packages" 0 --> 6
-    bar [1, 3, 2, 5, 1]
+%%{init: {'theme': 'base', 'themeVariables': { 'pie1': '#00E599', 'pie2': '#316192', 'pie3': '#FF6B35', 'pie4': '#339933', 'pie5': '#764ABC', 'pieStrokeColor': '#20232A', 'pieStrokeWidth': '2px', 'textPosition': '0.5', 'pieTitleTextSize': '20px' }}}%%
+pie title "Backend: Packages per Category"
+    "HTTP & Server" : 5
+    "Database" : 3
+    "Auth" : 2
+    "AI & ML" : 1
+    "Config" : 1
 ```
 
 **Frontend** — 15 direct dependencies across 6 categories:
 
 ```mermaid
-xychart-beta
-    title "Frontend: packages per category"
-    x-axis ["UI & Styling", "State & Data", "React Core", "Editor & Charts", "Routing & Forms", "Fonts & Notif"]
-    y-axis "Packages" 0 --> 4
-    bar [3, 3, 3, 2, 2, 2]
+%%{init: {'theme': 'base', 'themeVariables': { 'pie1': '#61DAFB', 'pie2': '#764ABC', 'pie3': '#06B6D4', 'pie4': '#FF6384', 'pie5': '#00E599', 'pie6': '#FF6B35', 'pieStrokeColor': '#20232A', 'pieStrokeWidth': '2px', 'textPosition': '0.5', 'pieTitleTextSize': '20px' }}}%%
+pie title "Frontend: Packages per Category"
+    "UI & Styling" : 3
+    "State & Data" : 3
+    "React Core" : 3
+    "Editor & Charts" : 2
+    "Routing & Forms" : 2
+    "Fonts & Notifications" : 2
 ```
 
 ---
@@ -263,7 +268,7 @@ xychart-beta
 | **Auth** | ![JWT](https://img.shields.io/badge/JWT-000000?style=flat-square&logo=jsonwebtokens&logoColor=white) ![bcrypt](https://img.shields.io/badge/bcrypt-EF4444?style=flat-square&logoColor=white) + httpOnly cookies |
 | **File Uploads** | ![Multer](https://img.shields.io/badge/Multer-FF6B35?style=flat-square&logo=nodedotjs&logoColor=white) (memory storage) |
 | **Frontend Deploy** | ![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white) |
-| **Backend Deploy** | ![Railway](https://img.shields.io/badge/Railway-0B0D0E?style=flat-square&logo=railway&logoColor=white) |
+| **Backend Deploy** | ![Render](https://img.shields.io/badge/Render-46E3B7?style=flat-square&logo=render&logoColor=white) |
 
 ---
 
@@ -493,25 +498,25 @@ The frontend is deployed on **Vercel** at [`ai-review-frontend-lovat.vercel.app`
 
 1. Push to `main` — Vercel auto-deploys
 2. Set environment variable in Vercel dashboard:
-   - `VITE_API_URL` = your Railway backend URL (e.g. `https://your-app.railway.app`)
+   - `VITE_API_URL` = your Render backend URL (e.g. `https://your-app.onrender.com`)
 
-### Backend (Railway)
+### Backend (Render)
 
-The backend is deployed on **Railway**. It binds to `0.0.0.0` for Railway's proxy routing.
+The backend is deployed on **Render** as a Web Service.
 
-1. Connect the GitHub repo in Railway
-2. Set these environment variables in the Railway dashboard:
+1. Connect the GitHub repo in Render
+2. Set these environment variables in the Render dashboard:
 
 | Variable | Value |
 |---|---|
 | `DATABASE_URL` | Your Neon connection string (with `?sslmode=require`) |
 | `JWT_SECRET` | Your secret key |
 | `GEMINI_API_KEY` | Your Google AI Studio key |
-| `PORT` | `3000` (or Railway auto-assigns) |
+| `PORT` | `3000` (or Render auto-assigns) |
 | `NODE_ENV` | `production` |
 
-3. Railway runs `npm start` → `node app.js` (from `package.json` scripts)
-4. The `postinstall` script (`prisma generate`) runs automatically after `npm install` on each deploy
+3. Build Command: `npm install` (Render auto-runs `postinstall` for prisma)
+4. Start Command: `npm start`
 
 ### CORS
 
