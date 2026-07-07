@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Search, Filter, ChevronDown, CheckCircle2, FileCode2, Code } from 'lucide-react';
+import { Search, Filter, ChevronDown, FileCode2, Code } from 'lucide-react';
 
 const STATUS_OPTIONS = [
   { value: 'All', label: 'All Statuses' },

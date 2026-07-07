@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Layout from '../components/Layout';
 import HistoryFilters from '../components/History/HistoryFilters';
 import ReviewCard from '../components/History/ReviewCard';
@@ -35,10 +35,11 @@ export default function History() {
 
   // When filters change, reset pagination to page 1
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setPaginationInfo(prev => ({ ...prev, currentPage: 1 }));
   }, [debouncedSearch, statusFilter, langFilter, typeFilter]);
 
-  const fetchHistory = async () => {
+  const fetchHistory = useCallback(async () => {
     try {
       setIsLoading(true);
       const res = await api.get('/history', {
@@ -65,11 +66,12 @@ export default function History() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [paginationInfo.currentPage, paginationInfo.pageSize, debouncedSearch, statusFilter, langFilter, typeFilter]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchHistory();
-  }, [paginationInfo.currentPage, debouncedSearch, statusFilter, langFilter, typeFilter]);
+  }, [fetchHistory]);
 
   const handleDeleteClick = (id) => {
     const review = reviews.find(r => r.id === id);

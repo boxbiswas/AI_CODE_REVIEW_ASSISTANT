@@ -3,7 +3,6 @@ import { X, Loader2 } from 'lucide-react';
 export default function AnalysisModal({
     isAnalyzing,
     pipelineError,
-    pipelineStatus,
     getProgressMessage,
     onClose
 }) {

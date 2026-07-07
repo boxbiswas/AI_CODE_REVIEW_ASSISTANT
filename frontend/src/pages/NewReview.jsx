@@ -9,7 +9,6 @@ import { Code, Upload, Play } from 'lucide-react';
 import AnalysisModal from '../components/NewReview/AnalysisModal';
 import CodePasteSection from '../components/NewReview/CodePasteSection';
 import UploadSection from '../components/NewReview/UploadSection';
-import LanguageSelector from '../components/NewReview/LanguageSelector';
 
 const SUPPORTED_LANGUAGES = [
   { id: 'javascript', name: 'JavaScript', ext: '.js' },
